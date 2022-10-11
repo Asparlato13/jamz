@@ -77,29 +77,29 @@ class AlbumViewController: UIViewController {
     }
     
     //selector doe user to be able to save an album or cancel
-    @objc func didTapActions() {
-        let actionSheet = UIAlertController(title: album.name, message: "Actions", preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        actionSheet.addAction(UIAlertAction(title: "Save Album", style: .default, handler: { [weak self] _ in
-            guard let strongSelf = self else {
-                return
-            }
-            APICaller.shared.saveAlbum(album: strongSelf.album) { success in
-               //post the notification that saving album was successfull
-                //print("Saved: \(success)")
-                if success {
-                    HapticsManager.shared.vibrate(for: .success)
-                    NotificationCenter.default.post(name: .albumSavedNotificaion, object: nil)
-                }
-                else {
-                    HapticsManager.shared.vibrate(for: .error)
-                }
-                
-            }
-        }))
-        
-        present(actionSheet, animated: true)
-    }
+//    @objc func didTapActions() {
+//        let actionSheet = UIAlertController(title: album.name, message: "Actions", preferredStyle: .actionSheet)
+//        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+//        actionSheet.addAction(UIAlertAction(title: "Save Album", style: .default, handler: { [weak self] _ in
+//            guard let strongSelf = self else {
+//                return
+//            }
+//            APICaller.shared.saveAlbum(album: strongSelf.album) { success in
+//               //post the notification that saving album was successfull
+//                //print("Saved: \(success)")
+//                if success {
+//                    HapticsManager.shared.vibrate(for: .success)
+//                    NotificationCenter.default.post(name: .albumSavedNotificaion, object: nil)
+//                }
+//                else {
+//                    HapticsManager.shared.vibrate(for: .error)
+//                }
+//                
+//            }
+//        }))
+//        
+//        present(actionSheet, animated: true)
+//    }
     
     func fetchData(){
         APICaller.shared.getAlbumDetails(for: album) { [weak self] result in
