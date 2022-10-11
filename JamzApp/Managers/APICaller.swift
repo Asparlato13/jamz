@@ -103,34 +103,34 @@ final class APICaller {
     //
     //
     //    //MARK: playlsts
-    //    public func getPlaylistDetails(for playlist: Playlist, completion:  @escaping (Result<PlaylistDetailResponse, Error>) -> Void) {
-    //        createRequest(
-    //            with: URL(string: Constants.baseAPIURL + "/playlists/" + playlist.id),
-    //            type: .GET){
-    //                request in
-    //                let task = URLSession.shared.dataTask(with: request){ data, _,  error in
-    //                    guard let data = data, error == nil else {
-    //                        completion(.failure(APIError.failedToGetData))
-    //                        return
-    //                    }
-    //                    do {
-    //                        let result = try JSONDecoder().decode(PlaylistDetailResponse.self, from: data)
-    //                        //  let json = try JSONSerialization.jsonObject(with: data,
-    //                        //     options: .allowFragments)
-    //                        //    print(result)
-    //                        completion(.success(result))
-    //                        //   print(json)
-    //                    }
-    //                    catch {
-    //                        // print(error)
-    //                        completion(.failure(error))
-    //                    }
-    //                }
-    //                task.resume()
-    //            }
-    //
-    //    }
-    //
+        public func getPlaylistDetails(for playlist: Playlist, completion:  @escaping (Result<PlaylistDetailResponse, Error>) -> Void) {
+            createRequest(
+                with: URL(string: Constants.baseAPIURL + "/playlists/" + playlist.id),
+                type: .GET){
+                    request in
+                    let task = URLSession.shared.dataTask(with: request){ data, _,  error in
+                        guard let data = data, error == nil else {
+                            completion(.failure(APIError.failedToGetData))
+                            return
+                        }
+                        do {
+                            let result = try JSONDecoder().decode(PlaylistDetailResponse.self, from: data)
+                            //  let json = try JSONSerialization.jsonObject(with: data,
+                            //     options: .allowFragments)
+                            //    print(result)
+                            completion(.success(result))
+                            //   print(json)
+                        }
+                        catch {
+                            // print(error)
+                            completion(.failure(error))
+                        }
+                    }
+                    task.resume()
+                }
+    
+        }
+    
     //
     //    public func getCurrentUserPlaylists(completion: @escaping (Result<[Playlist], Error>) -> Void ) {
     //        //writing out the api
@@ -268,57 +268,57 @@ final class APICaller {
     //                    }
     //
     //    //func to remove track from playlist
-    //
-    //                public func removeTrackFromPlaylists(  track: AudioTrack,
-    //                                                       playlist: Playlist,
-    //                                                       completion: @escaping (Bool) -> Void) {
-    //                    //api call to remove track from playlist
-    //                    createRequest(with: URL(string: Constants.baseAPIURL + "/playlists/\(playlist.id)/tracks"), type: .DELETE) { baseRequest in
-    //                        var request = baseRequest
-    //                        let json: [String: Any] = [
-    //
-    //                            "tracks": [
-    //                                [
-    //                                    "uri": "spotify:track:\(track.id)"
-    //                                ]
-    //
-    //                            ]
-    //                        ]
-    //                        print(json)
-    //                        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
-    //                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    //                     //   print("Adding...")
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-    //                            guard let data = data, error == nil else {
-    //                                completion(false)
-    //                                return
-    //                                }
-    //                            do {
-    //                                //let result = try JSONDecoder().decode(Playlist.self, from: data)
-    //
-    //                                let result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-    //                                print(result)
-    //                                if let response = result as? [String: Any], response["snapshot_id"] as? String != nil {
-    //                                    completion(true)
-    //
-    //                                }
-    //                                else {
-    //                                    //print(result)
-    //                                    completion(false)
-    //                                }
-    //
-    //                            }
-    //                            catch {
-    //                                    print(error)
-    //                                    completion(false)
-    //                                }
-    //                            }
-    //                            task.resume()
-    //                            }
-    //
-    //                }
-    //
-    //
+    
+                    public func removeTrackFromPlaylists(  track: AudioTrack,
+                                                           playlist: Playlist,
+                                                           completion: @escaping (Bool) -> Void) {
+                        //api call to remove track from playlist
+                        createRequest(with: URL(string: Constants.baseAPIURL + "/playlists/\(playlist.id)/tracks"), type: .DELETE) { baseRequest in
+                            var request = baseRequest
+                            let json: [String: Any] = [
+    
+                                "tracks": [
+                                    [
+                                        "uri": "spotify:track:\(track.id)"
+                                    ]
+    
+                                ]
+                            ]
+                            print(json)
+                            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                         //   print("Adding...")
+                            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                                guard let data = data, error == nil else {
+                                    completion(false)
+                                    return
+                                    }
+                                do {
+                                    //let result = try JSONDecoder().decode(Playlist.self, from: data)
+    
+                                    let result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                                    print(result)
+                                    if let response = result as? [String: Any], response["snapshot_id"] as? String != nil {
+                                        completion(true)
+    
+                                    }
+                                    else {
+                                        //print(result)
+                                        completion(false)
+                                    }
+    
+                                }
+                                catch {
+                                        print(error)
+                                        completion(false)
+                                    }
+                                }
+                                task.resume()
+                                }
+    
+                    }
+    
+    
     //
     //
     //

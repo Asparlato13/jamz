@@ -72,7 +72,7 @@ class AlbumViewController: UIViewController {
         collectionView.dataSource = self
 
         fetchData()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapActions))
+       // navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapActions))
 
     }
     
