@@ -54,7 +54,12 @@ class AuthViewController: UIViewController, WKNavigationDelegate  {
         
         print("Code: \(code)")
         AuthManager.shared.exchangeCodeForToken(code: code) { [weak self] success in DispatchQueue.main.async {
-            self?.navigationController?.popToRootViewController(animated: true)
+            let mainAppTabBarVC = TabBarViewController()
+            mainAppTabBarVC.modalPresentationStyle = .fullScreen
+            self?.present(mainAppTabBarVC, animated: true)
+           // self?.navigationController?.pop
+        //    popToRootViewController(animated: true)
+//            self?.performSegue(withIdentifier: "loggedinsegue", sender: nil)
             self?.completionHandler?(success)
         }
             

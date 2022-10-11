@@ -46,7 +46,7 @@
             <objects>
                 <viewController id="a0j-Ug-0Un" customClass="WelcomeViewController" customModule="JamzApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="EgY-K1-aV5">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="787"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ItL-s2-g4n">
@@ -124,11 +124,12 @@
                         <segue destination="OZ7-l8-vj7" kind="relationship" relationship="viewControllers" id="CKv-rI-nVO"/>
                         <segue destination="9td-hg-MSX" kind="relationship" relationship="viewControllers" id="4ov-fe-iLD"/>
                         <segue destination="dG6-Fe-3oA" kind="relationship" relationship="viewControllers" id="Dkl-md-k9P"/>
+                        <segue destination="a0j-Ug-0Un" kind="show" identifier="" id="Blv-9D-lvk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3At-fH-abT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-426" y="-689"/>
+            <point key="canvasLocation" x="-66" y="-675"/>
         </scene>
         <!--Item-->
         <scene sceneID="huw-2g-Qfy">
@@ -246,6 +247,9 @@
             <point key="canvasLocation" x="620" y="37"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="Blv-9D-lvk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
