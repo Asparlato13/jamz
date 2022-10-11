@@ -46,7 +46,7 @@ class TabBarViewController: UITabBarController {
         nav1.tabBarItem = UITabBarItem(title: "Home", image: UIImage(systemName: "house"), tag: 1)
         nav2.tabBarItem = UITabBarItem(title: "Search", image: UIImage(systemName: "magnifyingglass"), tag: 1)
         nav3.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(systemName: "heart.fill"), tag: 1)
-        nav4.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "music.note.list"), tag: 1)
+        nav4.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(systemName: "person.fill"), tag: 1)
         
         
         
