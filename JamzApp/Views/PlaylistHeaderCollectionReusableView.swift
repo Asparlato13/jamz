@@ -84,20 +84,20 @@ final class PlaylistHeaderCollectionReusableView: UICollectionReusableView {
     @objc private func didTapPlayAll(){
         delegate?.PlaylistHeaderCollectionReusableViewDidTapPlayAll(self)
     }
-//    
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        let imageSize: CGFloat = height/1.8
-//        imageView.frame = CGRect(x: (width-imageSize)/2, y: 29, width: imageSize, height: imageSize)
-//        
-//        nameLabel.frame = CGRect(x: 10, y: imageView.bottom, width: width-20, height: 44)
-//        descriptionLabel.frame = CGRect(x: 10, y: nameLabel.bottom, width: width-20, height: 44)
-//        ownerLabel.frame = CGRect(x: 10, y: descriptionLabel.bottom, width: width-20, height: 44)
-//        
-//        
-//        playAllButton.frame = CGRect(x: width-80, y: height-80, width: 60, height: 60)
-//        
-//    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let imageSize: CGFloat = frame.height/1.8
+        imageView.frame = CGRect(x: (frame.width-imageSize)/2, y: 29, width: imageSize, height: imageSize)
+        
+        nameLabel.frame = CGRect(x: 10, y: imageView.frame.maxY, width: frame.width-20, height: 44)
+        descriptionLabel.frame = CGRect(x: 10, y: nameLabel.frame.maxY, width: frame.width-20, height: 44)
+        ownerLabel.frame = CGRect(x: 10, y: descriptionLabel.frame.maxY, width: frame.width-20, height: 44)
+        
+        
+        playAllButton.frame = CGRect(x: frame.width-80, y: frame.height-80, width: 60, height: 60)
+        
+    }
     func configure(with viewModel: PlaylistHeaderViewViewModel) {
         nameLabel.text = viewModel.name
         ownerLabel.text = viewModel.ownerName

@@ -44,32 +44,37 @@ class FeaturedPlaylistCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(playlistNameLabel)
         contentView.addSubview(creatorNameLabel)
         contentView.clipsToBounds = true
-      
+    
     }
     
     required init?(coder: NSCoder) {
         fatalError()
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        creatorNameLabel.frame = CGRect(
-//            x: 3,
-//            y: contentView.height-30,
-//            width: contentView.width-6,
-//            height: 30)
-//        playlistNameLabel.frame = CGRect(
-//            x: 3,
-//            y: contentView.height-60,
-//            width: contentView.width-6,
-//            height: 30)
-//        let imageSize = contentView.height-70
-//        
-//        playlistCoverImageView.frame = CGRect(
-//            x: (contentView.width-imageSize)/2,
-//            y: 3,
-//            width: imageSize,
-//            height: imageSize)
-//    }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        creatorNameLabel.frame = CGRect()
+        playlistNameLabel.frame = CGRect()
+        playlistCoverImageView.frame = CGRect()
+        creatorNameLabel.frame = CGRect(
+            x: 3,
+            y: contentView.frame.height-30,
+            width: contentView.frame.width-6,
+            height: 30)
+        playlistNameLabel.frame = CGRect(
+            x: 3,
+            y: contentView.frame.height-60,
+            width: contentView.frame.width-6,
+            height: 30)
+        let imageSize = contentView.frame.height-70
+
+        playlistCoverImageView.frame = CGRect(
+            x: (contentView.frame.width-imageSize)/2,
+            y: 3,
+            width: imageSize,
+            height: imageSize)
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
         playlistNameLabel.text = nil

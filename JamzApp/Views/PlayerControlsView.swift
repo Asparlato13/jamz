@@ -130,20 +130,20 @@ final class PlayerControlsView: UIView {
         
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        nameLabel.frame = CGRect(x: 0, y: 0, width: width, height: 50)
-//        subtitleLabel.frame = CGRect(x: 0, y: nameLabel.bottom+10, width: width, height: 50)
-//
-//        volumeSlider.frame = CGRect(x: 10, y: subtitleLabel.bottom+20, width: width-20, height: 44)
-//
-//        let buttonSize: CGFloat = 60
-//
-//        playPauseButton.frame = CGRect(x: (width-buttonSize)/2, y: volumeSlider.bottom+30, width: buttonSize, height: buttonSize)
-//        backButton.frame = CGRect(x: playPauseButton.left-80-buttonSize, y: playPauseButton.top, width: buttonSize, height: buttonSize)
-//        nextButton.frame = CGRect(x: playPauseButton.right+80, y: playPauseButton.top, width: buttonSize, height: buttonSize)
-//    }
-//
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        nameLabel.frame = CGRect(x: 0, y: 0, width: frame.width, height: 50)
+        subtitleLabel.frame = CGRect(x: 0, y: nameLabel.frame.maxY+10, width: frame.width, height: 50)
+
+        volumeSlider.frame = CGRect(x: 10, y: subtitleLabel.frame.maxY+20, width: frame.width-20, height: 44)
+
+        let buttonSize: CGFloat = 60
+
+        playPauseButton.frame = CGRect(x: (frame.width-buttonSize)/2, y: volumeSlider.frame.maxY+30, width: buttonSize, height: buttonSize)
+        backButton.frame = CGRect(x: playPauseButton.frame.minX-80-buttonSize, y: playPauseButton.frame.maxX, width: buttonSize, height: buttonSize)
+        nextButton.frame = CGRect(x: playPauseButton.frame.minY+80, y: playPauseButton.frame.maxX, width: buttonSize, height: buttonSize)
+    }
+
     func configure(with viewModel: PlayerControlsViewModel) {
         nameLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle

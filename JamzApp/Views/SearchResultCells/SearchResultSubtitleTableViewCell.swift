@@ -46,16 +46,16 @@ class SearchResultSubtitleTableViewCell: UITableViewCell {
         fatalError()
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        let imageSize : CGFloat = contentView
-//        iconImageView.frame = CGRect(x: 10, y: 5, width: imageSize, height: imageSize)
-//        iconImageView.layer.cornerRadius = imageSize/2
-//        iconImageView.layer.masksToBounds = true
-//        let labelHeight = contentView.height/2
-//        label.frame = CGRect(x: iconImageView.right+10, y: 0, width: contentView.width-iconImageView.right-15, height: labelHeight)
-//        subtitlelabel.frame = CGRect(x: iconImageView.right+10, y: labelHeight, width: contentView.width-iconImageView.right-15, height: labelHeight)
-//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let imageSize : CGFloat = contentView.frame.height
+        iconImageView.frame = CGRect(x: 10, y: 5, width: imageSize, height: imageSize)
+        iconImageView.layer.cornerRadius = imageSize/2
+        iconImageView.layer.masksToBounds = true
+        let labelHeight = contentView.frame.height/2
+        label.frame = CGRect(x: iconImageView.frame.maxX, y: 0, width: contentView.frame.width-iconImageView.frame.maxX, height: labelHeight)
+        subtitlelabel.frame = CGRect(x: iconImageView.frame.maxX+10, y: labelHeight, width: contentView.frame.width-iconImageView.frame.maxX-15, height: labelHeight)
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
