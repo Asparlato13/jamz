@@ -57,13 +57,17 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         label.text = nil
         imageView.image = UIImage(systemName: "music.quarternote.3", withConfiguration: UIImage.SymbolConfiguration(pointSize: 50, weight: .regular))
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//
-//        label.frame = CGRect(x: 10, y: contentView.height/2, width: contentView.width-20, height: contentView.height/2)
-//        imageView.frame = CGRect(x: contentView.width/2, y: 10, width: contentView.width/2, height: contentView.height/2)
-//    }
-    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+       
+   
+        label.bounds.size
+      //  view.bounds.size
+        label.frame = CGRect(x: 10, y: contentView.frame.height/2, width: contentView.frame.width-20, height: contentView.frame.height/2)
+        imageView.frame = CGRect(x: contentView.frame.width/2, y: 10, width: contentView.frame.width/2, height: contentView.frame.height/2)
+    }
+
     func configure(with viewModel: CategoryCollectionViewCellViewModel) {
         label.text = viewModel.title
         imageView.sd_setImage(with: viewModel.artworkURL, completed: nil)

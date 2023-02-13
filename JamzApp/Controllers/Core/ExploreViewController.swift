@@ -9,7 +9,7 @@ import UIKit
 
 class ExploreViewController: UIViewController, UISearchResultsUpdating, UISearchBarDelegate {
 
-  
+  //search bar
     let searchController: UISearchController = {
         let results = UIViewController()
         
@@ -52,7 +52,7 @@ class ExploreViewController: UIViewController, UISearchResultsUpdating, UISearch
         collectionView.backgroundColor = .systemBackground
         
         
-        
+        //call api to diplay categories
         APICaller.shared.getCategories { [weak self] result in
             DispatchQueue.main.async {
             switch result {

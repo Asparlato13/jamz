@@ -162,111 +162,111 @@ final class APICaller {
     //    }
     //
     //    //create playlist
-    //    public func createPlaylists(
-    //        with name: String,
-    //        completion: @escaping (Bool) -> Void ) {
-    //
-    //            //get user profile first for user id
-    //            //weak self is to prevent a memory  leak
-    //            getCurrentUserProfile { [weak self] result in
-    //                switch result {
-    //                case .success(let profile):
-    //                    let urlString = Constants.baseAPIURL + "/users/\(profile.id)/playlists"
-    //                    print(urlString)
-    //                    self?.createRequest(with: URL(string: urlString), type: .POST) { baseRequest in
-    //                        var request = baseRequest
-    //                        let json = [
-    //                            "name": name
-    //                        ]
-    //                        //take a dictionary to covert into data-- create dictionary
-    //                        //start creation
-    //                        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
-    //                        print("Starting creation...")
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-    //                            guard let data = data, error == nil else {
-    //                                completion(false)
-    //                                return
-    //                                }
-    //                    //    }
-    //
-    //                            do {
-    //                               //let result = try JSONDecoder().decode(Playlist.self, from: data)
-    //
-    //                                let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-    ////if user has valid id -- success
-    //                                if let response = result as? [String: Any], response["id"] as? String != nil {
-    //                                   print("Created")
-    //                                    completion(true)
-    //                                }
-    //                                else {
-    //                                    completion(false)
-    //                                }
-    //
-    //
-    //                            }
-    //
-    //                            catch {
-    //                                print(error)
-    //                                completion(false)
-    //                            }
-    //                        }
-    //                        task.resume()
-    //                        }
-    //                case .failure(let error):
-    //                    print(error.localizedDescription)
-    //
-    //                }
-    //            }
-    //        }
-    //
-    //
-    //                //add track to playlist
-    //                public func addTrackToPlaylist(
-    //                    track: AudioTrack,
-    //                    playlist: Playlist,
-    //                    completion: @escaping (Bool) -> Void
-    //                ) {
-    //                    //api call to add track
-    //                    createRequest(with: URL(string: Constants.baseAPIURL + "/playlists/\(playlist.id)/tracks"), type: .POST) { baseRequest in
-    //                        var request = baseRequest
-    //                        let json = [
-    //                            "uris": [
-    //                                "spotify:track:\(track.id)"
-    //                            ]
-    //                        ]
-    //                     //   print(json)
-    //                        request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
-    //                        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-    //                     //   print("Adding...")
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-    //                            guard let data = data, error == nil else {
-    //                                completion(false)
-    //                                return
-    //                                }
-    //                            do {
-    //                                //let result = try JSONDecoder().decode(Playlist.self, from: data)
-    //
-    //                                let result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
-    //                                   // print(result)
-    //                                if let response = result as? [String: Any], response["snapshot_id"] as? String != nil {
-    //                                    completion(true)
-    //
-    //                                }
-    //                                else {
-    //                                    //print(result)
-    //                                    completion(false)
-    //                                }
-    //
-    //                            }
-    //                            catch {
-    //                                    print(error)
-    //                                    completion(false)
-    //                                }
-    //                            }
-    //                            task.resume()
-    //                            }
-    //                    }
-    //
+        public func createPlaylists(
+            with name: String,
+            completion: @escaping (Bool) -> Void ) {
+    
+                //get user profile first for user id
+                //weak self is to prevent a memory  leak
+                getCurrentUserProfile { [weak self] result in
+                    switch result {
+                    case .success(let profile):
+                        let urlString = Constants.baseAPIURL + "/users/\(profile.id)/playlists"
+                        print(urlString)
+                        self?.createRequest(with: URL(string: urlString), type: .POST) { baseRequest in
+                            var request = baseRequest
+                            let json = [
+                                "name": name
+                            ]
+                            //take a dictionary to covert into data-- create dictionary
+                            //start creation
+                            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                            print("Starting creation...")
+                            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                                guard let data = data, error == nil else {
+                                    completion(false)
+                                    return
+                                    }
+                        //    }
+    
+                                do {
+                                   //let result = try JSONDecoder().decode(Playlist.self, from: data)
+    
+                                    let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+    //if user has valid id -- success
+                                    if let response = result as? [String: Any], response["id"] as? String != nil {
+                                       print("Created")
+                                        completion(true)
+                                    }
+                                    else {
+                                        completion(false)
+                                    }
+    
+    
+                                }
+    
+                                catch {
+                                    print(error)
+                                    completion(false)
+                                }
+                            }
+                            task.resume()
+                            }
+                    case .failure(let error):
+                        print(error.localizedDescription)
+    
+                    }
+                }
+            }
+    
+    
+                    //add track to playlist
+                    public func addTrackToPlaylist(
+                        track: AudioTrack,
+                        playlist: Playlist,
+                        completion: @escaping (Bool) -> Void
+                    ) {
+                        //api call to add track
+                        createRequest(with: URL(string: Constants.baseAPIURL + "/playlists/\(playlist.id)/tracks"), type: .POST) { baseRequest in
+                            var request = baseRequest
+                            let json = [
+                                "uris": [
+                                    "spotify:track:\(track.id)"
+                                ]
+                            ]
+                         //   print(json)
+                            request.httpBody = try? JSONSerialization.data(withJSONObject: json, options: .fragmentsAllowed)
+                            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+                         //   print("Adding...")
+                            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                                guard let data = data, error == nil else {
+                                    completion(false)
+                                    return
+                                    }
+                                do {
+                                    //let result = try JSONDecoder().decode(Playlist.self, from: data)
+    
+                                    let result = try JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed)
+                                       // print(result)
+                                    if let response = result as? [String: Any], response["snapshot_id"] as? String != nil {
+                                        completion(true)
+    
+                                    }
+                                    else {
+                                        //print(result)
+                                        completion(false)
+                                    }
+    
+                                }
+                                catch {
+                                        print(error)
+                                        completion(false)
+                                    }
+                                }
+                                task.resume()
+                                }
+                        }
+    
     //    //func to remove track from playlist
     
                     public func removeTrackFromPlaylists(  track: AudioTrack,
@@ -323,144 +323,144 @@ final class APICaller {
     //
     //
     //                //MARK: profile
-    //
-    //                public func getCurrentUserProfile(completion:  @escaping (Result<UserProfile, Error>) -> Void) {
-    //                    createRequest(
-    //                        with: URL(string: Constants.baseAPIURL + "/me"),
-    //                        type: .GET) { baseRequest in
-    //                            let task = URLSession.shared.dataTask(with: baseRequest) { data, _, error in
-    //                                guard let data = data, error == nil else {
-    //                                    completion(.failure(APIError.failedToGetData))
-    //                                    return
-    //                                }
-    //                                do {
-    //                                    let result = try JSONDecoder().decode(UserProfile.self, from: data)
-    //                                    completion(.success(result))
-    //                                }
-    //                                catch {
-    //                                    print(error.localizedDescription)
-    //                                    completion(.failure(error))
-    //                                }
-    //                            }
-    //
-    //                            task.resume()
-    //                        }
-    //
-    //                }
-    //
+    
+                    public func getCurrentUserProfile(completion:  @escaping (Result<UserProfile, Error>) -> Void) {
+                        createRequest(
+                            with: URL(string: Constants.baseAPIURL + "/me"),
+                            type: .GET) { baseRequest in
+                                let task = URLSession.shared.dataTask(with: baseRequest) { data, _, error in
+                                    guard let data = data, error == nil else {
+                                        completion(.failure(APIError.failedToGetData))
+                                        return
+                                    }
+                                    do {
+                                        let result = try JSONDecoder().decode(UserProfile.self, from: data)
+                                        completion(.success(result))
+                                    }
+                                    catch {
+                                        print(error.localizedDescription)
+                                        completion(.failure(error))
+                                    }
+                                }
+    
+                                task.resume()
+                            }
+    
+                    }
+    
     //
     //                //MARK: Browse
     //
-    //                public func getNewReleases(completion: @escaping ((Result<NewReleasesResponses, Error>))-> Void) {
-    //                    //(completion: @escaping ((Result<String, Error>))-> Void) {
-    //                    createRequest(with: URL(string: Constants.baseAPIURL  + "/browse/new-releases?limit=50"), type: .GET) { request in
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-    //                            guard let  data = data, error  == nil else {
-    //                                completion(.failure(APIError.failedToGetData))
-    //                                return
-    //                            }
-    //                            do {
-    //                                let result = try JSONDecoder().decode(NewReleasesResponses.self, from: data)
-    //                                //JSONSerialization.jsonObject(with: data, options: .allowFragments)
-    //                                // print(result)
-    //                                completion(.success(result))
-    //                            }
-    //                            catch {
-    //                                completion(.failure(error))
-    //                            }
-    //                        }
-    //                        task.resume()
-    //                    }
-    //                }
-    //
-    //
+                    public func getNewReleases(completion: @escaping ((Result<NewReleasesResponses, Error>))-> Void) {
+                        //(completion: @escaping ((Result<String, Error>))-> Void) {
+                        createRequest(with: URL(string: Constants.baseAPIURL  + "/browse/new-releases?limit=50"), type: .GET) { request in
+                            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                                guard let  data = data, error  == nil else {
+                                    completion(.failure(APIError.failedToGetData))
+                                    return
+                                }
+                                do {
+                                    let result = try JSONDecoder().decode(NewReleasesResponses.self, from: data)
+                                    //JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                                    // print(result)
+                                    completion(.success(result))
+                                }
+                                catch {
+                                    completion(.failure(error))
+                                }
+                            }
+                            task.resume()
+                        }
+                    }
+    
+    
     //                //public  func getFeaturedPlaylists(completion: @escaping ((Result<string, Error>) -> Void)){
-    //                public func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
-    //                    createRequest(with: URL(string: Constants.baseAPIURL  + "/browse/featured-playlists?limit=20"), type: .GET)
-    //                    { request in
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _, error in
-    //                            guard let  data = data, error  == nil else {
-    //                                completion(.failure(APIError.failedToGetData))
-    //                                return
-    //                            }
-    //                            do {
-    //                                //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-    //                                // print(json)
-    //                                let result = try JSONDecoder().decode(FeaturedPlaylistResponse.self, from: data)
-    //                                // print(result)
-    //                                completion(.success(result))
-    //
-    //                            }
-    //                            catch {
-    //                                completion(.failure(error))
-    //                            }
-    //
-    //                        }
-    //                        task.resume()
-    //                    }
-    //                }
-    //
+                    public func getFeaturedPlaylists(completion: @escaping ((Result<FeaturedPlaylistResponse, Error>) -> Void)) {
+                        createRequest(with: URL(string: Constants.baseAPIURL  + "/browse/featured-playlists?limit=20"), type: .GET)
+                        { request in
+                            let task = URLSession.shared.dataTask(with: request) { data, _, error in
+                                guard let  data = data, error  == nil else {
+                                    completion(.failure(APIError.failedToGetData))
+                                    return
+                                }
+                                do {
+                                    //let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                                    // print(json)
+                                    let result = try JSONDecoder().decode(FeaturedPlaylistResponse.self, from: data)
+                                    // print(result)
+                                    completion(.success(result))
+    
+                                }
+                                catch {
+                                    completion(.failure(error))
+                                }
+    
+                            }
+                            task.resume()
+                        }
+                    }
+    
     //                //three } here runs -- two does not
     //                //     }
     //                // }
     //                //   }
     //
     //                //public func getRecommendations(completion: @escaping ((Result<String, Error>)) -> Void) {
-    //                public func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationResponse, Error>) -> Void)) {
-    //                    let seeds =  genres.joined(separator: ",")
-    //                    createRequest(with: URL(string: Constants.baseAPIURL + "/recommendations?limit=40&seed_genres=\(seeds)"), type: .GET) {
-    //                        request in
+                    public func getRecommendations(genres: Set<String>, completion: @escaping ((Result<RecommendationResponse, Error>) -> Void)) {
+                        let seeds =  genres.joined(separator: ",")
+                        createRequest(with: URL(string: Constants.baseAPIURL + "/recommendations?limit=40&seed_genres=\(seeds)"), type: .GET) {
+                            request in
+
+                            let task = URLSession.shared.dataTask(with: request) { data, _,  error in
+                                guard let  data = data, error  == nil else {
+                                    completion(.failure(APIError.failedToGetData))
+                                    return
+                                }
+                                do {
+                                    // let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                                    // print("json: \(result)")
+
+                                    let result = try JSONDecoder().decode(RecommendationResponse.self, from: data)
+                                    // print(result)
+                                    completion(.success(result))
+
+
+
+                                }
+                                catch {
+                                    completion(.failure(error))
+                                }
+
+                            }
+                            task.resume()
+                        }
+                    }
+    
     //
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _,  error in
-    //                            guard let  data = data, error  == nil else {
-    //                                completion(.failure(APIError.failedToGetData))
-    //                                return
-    //                            }
-    //                            do {
-    //                                // let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-    //                                // print("json: \(result)")
-    //
-    //                                let result = try JSONDecoder().decode(RecommendationResponse.self, from: data)
-    //                                // print(result)
-    //                                completion(.success(result))
-    //
-    //
-    //
-    //                            }
-    //                            catch {
-    //                                completion(.failure(error))
-    //                            }
-    //
-    //                        }
-    //                        task.resume()
-    //                    }
-    //                }
-    //
-    //
-    //                public func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse, Error>) -> Void)) {
-    //                    createRequest(with: URL(string: Constants.baseAPIURL + "/recommendations/available-genre-seeds"), type: .GET) {
-    //                        request in
-    //                        let task = URLSession.shared.dataTask(with: request) { data, _,  error in
-    //                            guard let  data = data, error  == nil else {
-    //                                completion(.failure(APIError.failedToGetData))
-    //                                return
-    //                            }
-    //                            do {
-    //                                //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-    //                                //  print("json: \(result)")
-    //                                let result = try JSONDecoder().decode(RecommendedGenresResponse.self, from: data)
-    //                                //print(result)
-    //                                completion(.success(result))
-    //
-    //                            }
-    //                            catch {
-    //                                completion(.failure(error))
-    //                            }
-    //
-    //                        }
-    //                        task.resume()
-    //                    }
-    //                }
+                    public func getRecommendedGenres(completion: @escaping ((Result<RecommendedGenresResponse, Error>) -> Void)) {
+                        createRequest(with: URL(string: Constants.baseAPIURL + "/recommendations/available-genre-seeds"), type: .GET) {
+                            request in
+                            let task = URLSession.shared.dataTask(with: request) { data, _,  error in
+                                guard let  data = data, error  == nil else {
+                                    completion(.failure(APIError.failedToGetData))
+                                    return
+                                }
+                                do {
+                                    //let result = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+                                    //  print("json: \(result)")
+                                    let result = try JSONDecoder().decode(RecommendedGenresResponse.self, from: data)
+                                    //print(result)
+                                    completion(.success(result))
+    
+                                }
+                                catch {
+                                    completion(.failure(error))
+                                }
+    
+                            }
+                            task.resume()
+                        }
+                    }
     //
     //                // MARK: - Category
     

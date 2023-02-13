@@ -49,28 +49,32 @@ class RecommendedTrackCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        albumCoverImageView.frame = CGRect(
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.albumCoverImageView.frame = CGRect(
 //            x: 5,
 //            y: 2,
 //            width: contentView.height-4,
-//            height: contentView.height-4)
-//        artistNameLabel.frame =  CGRect(
+//            height: contentView.height-4
+        )
+        artistNameLabel.frame =  CGRect(
 //            x: albumCoverImageView.right+10,
 //            y: contentView.height/2,
 //            width: contentView.width-albumCoverImageView.right-15,
-//            height: contentView.height/2)
+//            height: contentView.height/2
+        )
 //
-//        TrackNameLabel.frame = CGRect(
+        TrackNameLabel.frame = CGRect(
 //            x: albumCoverImageView.right+10,
 //            y: 0,
 //            width: contentView.width-albumCoverImageView.right-15,
-//            height: contentView.height/2)
-//
-//
-//
-//    }
+//            height: contentView.height/2
+        )
+
+
+     
+
+    }
     override func prepareForReuse() {
         super.prepareForReuse()
         TrackNameLabel.text = nil

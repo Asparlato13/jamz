@@ -41,23 +41,25 @@ class AlbumTrackCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        artistNameLabel.frame =  CGRect(
-//            x: 10,
-//            y: contentView.height/2,
-//            width: contentView.width-15,
-//            height: contentView.height/2)
-//        
-//        TrackNameLabel.frame = CGRect(
-//            x: 10,
-//            y: 0,
-//            width: contentView.width-15,
-//            height: contentView.height/2)
-//       
-//        
-//        
-//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        artistNameLabel.frame =  CGRect(
+            x: 10,
+            y: contentView.frame.height/2,
+            width: contentView.frame.width-15,
+            height: contentView.frame.height/2)
+        
+        TrackNameLabel.frame = CGRect(
+            x: 10,
+            y: 0,
+            width: contentView.frame.width-15,
+            height: contentView.frame.height/2)
+       
+        
+        
+    }
+    
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         TrackNameLabel.text = nil

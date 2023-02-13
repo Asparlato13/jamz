@@ -49,14 +49,19 @@ class PlayerViewController: UIViewController {
 //        imageView.frame = CGRect(
 //            x: 0,
 //            y: view.safeAreaInsets.top,
-//            width: view.width,
-//            height: view.width)
+//            width: view.frame.width,
+//            height: view.frame.width)
 //        controlsView.frame = CGRect(
-//            x: 10,
-//            y: imageView.bottom+10,
+//            x: 10, y: imageView.bottom+10,
 //            width: view.width-20,
 //            height: view.height-imageView.height-view.safeAreaInsets.top-view.safeAreaInsets.bottom-15)
+//       
+//    }
 //
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        view.bringSubviewToFront(imageView)
+//        view.bringSubviewToFront(controlsView)
 //    }
     
     //takes datasoruce and confir\gures ui components

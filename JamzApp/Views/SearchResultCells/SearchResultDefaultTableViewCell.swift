@@ -38,14 +38,22 @@ class SearchResultDefaultTableViewCell: UITableViewCell {
         fatalError()
     }
     
-//    override func layoutSubviews() {
-//        super.layoutSubviews()
-//        let imageSize : CGFloat = contentView.height-10
-//        iconImageView.frame = CGRect(x: 10, y: 5, width: imageSize, height: imageSize)
-//        iconImageView.layer.cornerRadius = imageSize/2
-//        iconImageView.layer.masksToBounds = true
-//     //   label.frame = CGRect(x: iconImageView.right+10, y: 0, width: contentView.width-iconImageView.right-15, height: contentView.height)
-//    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+
+        label.clipsToBounds.self
+        imageView?.clipsToBounds.self
+        let imageSize : CGFloat = contentView.frame.height-10
+        iconImageView.frame = CGRect(x: 10, y: 5, width: imageSize, height: imageSize)
+        iconImageView.layer.cornerRadius = imageSize/2
+        iconImageView.layer.masksToBounds = true
+        label.frame = CGRect(x: iconImageView.frame.maxX+10, y: 0, width: contentView.frame.width-iconImageView.frame.maxX-15, height: contentView.frame.height)
+    }
+    
+    
+  
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         iconImageView.image = nil
